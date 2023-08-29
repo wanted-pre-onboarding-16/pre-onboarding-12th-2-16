@@ -1,17 +1,22 @@
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
-import Issues from './components/Issues/Issues';
+
 import Layout from './components/Layout/Layout';
+import { getIssuesData } from './slice/issuesSlice';
 import { customAxios } from './util/api';
 
 function App() {
-  const [isuessArr, setIsuessArr] = useState([]);
+  const issuessList = useSelector(state => state.issues.issuesStore);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const getIssues = async () => {
       try {
         const result = await customAxios.get();
         if (result.status === 200) {
-          setIsuessArr(result.data);
+          dispatch(getIssuesData(result.data));
         }
       } catch (err) {
         console.error(err);
@@ -22,7 +27,7 @@ function App() {
   return (
     <>
       <Layout />
-      {isuessArr?.map(el => (
+      {issuessList?.map(el => (
         <p key={el.id}>{el.title}</p>
       ))}
     </>
