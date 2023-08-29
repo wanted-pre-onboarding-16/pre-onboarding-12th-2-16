@@ -4,7 +4,7 @@ function Layout({ children }) {
   return (
     <div>
       <h1>Facebook / React</h1>
-      {children};
+      {children}
     </div>
   );
 }
