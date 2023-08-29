@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import './App.css';
 
+import Issues from './components/Issues/Issues';
 import Layout from './components/Layout/Layout';
 import { getIssuesData } from './slice/issuesSlice';
 import { customAxios } from './util/api';
 
 function App() {
-  const issuessList = useSelector(state => state.issues.issuesStore);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,13 +22,11 @@ function App() {
       }
     };
     getIssues();
-  }, []);
+  }, [dispatch]);
   return (
     <>
       <Layout />
-      {issuessList?.map(el => (
-        <p key={el.id}>{el.title}</p>
-      ))}
+      <Issues />
     </>
   );
 }
