@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
 
 import Issues from './components/Issues/Issues';
@@ -8,12 +8,16 @@ import { fetchByIssues } from './slice/issuesSlice';
 
 function App() {
   const dispatch = useDispatch();
+  const selector = useSelector(state => state.issue);
 
+  console.info(selector);
   useEffect(() => {
-    const getIssues = () => {
-      dispatch(fetchByIssues());
-    };
-    getIssues();
+    dispatch(
+      fetchByIssues({
+        lastIssueNumber: selector.lastIssueNumber,
+        nextIssuePage: selector.nextIssuePage,
+      }),
+    );
   }, [dispatch]);
 
   return (
