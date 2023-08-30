@@ -26,6 +26,14 @@ export const fetchByIssues = createAsyncThunk(
 export const issuesSlice = createSlice({
   name: 'issue',
   initialState,
+  reducers: {
+    callIssueReducer: (state, action) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+  },
+
   extraReducers: builder => {
     builder.addCase(fetchByIssues.pending, (state, action) => {
       state.isLoading = true;
@@ -33,14 +41,13 @@ export const issuesSlice = createSlice({
       state.isError = false;
     });
     builder.addCase(fetchByIssues.fulfilled, (state, action) => {
-      const concatArr = state.issuesStore.concat(action.payload);
-      state.issuesStore = concatArr;
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.issuesStore = action.payload;
       state.lastIssueNumber += 10;
       if (state.lastIssueNumber % 30 === 0) {
         state.nextIssuePage += 1;
       }
-      state.isLoading = false;
-      state.isSuccess = true;
     });
     builder.addCase(fetchByIssues.rejected, (state, action) => {
       state.error = action.payload;
@@ -50,4 +57,6 @@ export const issuesSlice = createSlice({
   },
 });
 
+export const fetchIssues = issuesSlice.extraReducers;
+export const { callIssueReducer, successIssueReducer } = issuesSlice.actions;
 export default issuesSlice.reducer;
