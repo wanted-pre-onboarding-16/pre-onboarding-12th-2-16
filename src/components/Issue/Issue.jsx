@@ -1,18 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { styled } from 'styled-components';
 
 function Issue({ data, issueCount }) {
+  const navigation = useNavigate();
+  const moveToDescription = () => {
+    navigation(`${issueCount}`);
+  };
+  const moveToAdvertosement = () => {
+    window.location.href = 'https://www.wanted.co.kr/';
+  };
+  // body
   return (
     <LiTag>
       {(issueCount + 1) % 5 === 0 && (
-        <div>
+        <div onClick={moveToAdvertosement}>
           <img
             src="https://image.wanted.co.kr/optimize?src=https%3A%2F%2Fstatic.wanted.co.kr%2Fimages%2Fuserweb%2Flogo_wanted_black.png&w=110&q=100"
             alt="adevertisement logo"
           />
         </div>
       )}
-      <div>
+      <div onClick={moveToDescription}>
         <p>
           <span>#{data.number}</span>
           title: {data.title}
