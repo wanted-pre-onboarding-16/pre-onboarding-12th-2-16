@@ -3,6 +3,6 @@ import issuesReducer from './slice/issuesSlice';
 
 export const store = configureStore({
   reducer: {
-    issues: issuesReducer,
+    issue: issuesReducer,
   },
 });
