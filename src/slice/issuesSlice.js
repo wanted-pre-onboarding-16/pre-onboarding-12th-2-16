@@ -44,9 +44,8 @@ export const issuesSlice = createSlice({
       state.isLoading = false;
       state.isSuccess = true;
       state.issuesStore = action.payload;
-      state.lastIssueNumber += 10;
-      if (state.lastIssueNumber % 30 === 0) {
-        state.nextIssuePage += 1;
+      if (state.lastIssueNumber <= 100) {
+        state.lastIssueNumber += 10;
       }
     });
     builder.addCase(fetchByIssues.rejected, (state, action) => {
