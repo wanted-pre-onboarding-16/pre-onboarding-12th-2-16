@@ -7,7 +7,8 @@ function Issue({ data, issueCount }) {
   const moveToDescription = () => {
     navigation(`${issueCount}`);
   };
-  const moveToAdvertosement = () => {
+  const moveToAdvertosement = e => {
+    e.stopPropagation();
     window.location.href = 'https://www.wanted.co.kr/';
   };
 
