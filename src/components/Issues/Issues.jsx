@@ -1,9 +1,9 @@
-
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { callIssueReducer } from '../../slice/issuesSlice';
 import Issue from '../Issue/Issue';
+import Spinner from '../Loading/Loading';
 
 function Issues() {
   const dispatch = useDispatch();
@@ -47,9 +47,9 @@ function Issues() {
       {selector.issuesStore?.map((issues, idx) => {
         return <Issue key={issues.id} data={issues} issueCount={idx} />;
       })}
+      {selector.isLoading && <Spinner />}
     </ul>
   );
-
 }
 
 export default Issues;
