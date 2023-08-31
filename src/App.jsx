@@ -8,13 +8,13 @@ import { LOAD_ISSUES_REDUCER } from './slice/issuesSlice';
 
 function App() {
   const dispatch = useDispatch();
-  const selector = useSelector(state => state.issue);
+  const { nextIssuePage } = useSelector(state => state.issue);
   useEffect(() => {
     const lastViewedCount = sessionStorage.getItem('lastViewedCount') | 10;
     dispatch(
       LOAD_ISSUES_REDUCER({
         lastIssueNumber: lastViewedCount,
-        nextIssuePage: selector.nextIssuePage,
+        nextIssuePage: nextIssuePage,
       }),
     );
   }, []);

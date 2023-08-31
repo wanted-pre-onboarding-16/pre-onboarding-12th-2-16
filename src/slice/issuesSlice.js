@@ -14,13 +14,7 @@ export const issuesSlice = createSlice({
   name: 'issue',
   initialState,
   reducers: {
-    callIssueReducer: (state, action) => {
-      state.isLoading = true;
-      state.isSuccess = false;
-      state.isError = false;
-    },
-
-    LOAD_ISSUES_REDUCER: (state, action) => {
+    LOAD_ISSUES_REDUCER: state => {
       state.isLoading = true;
       state.isSuccess = false;
       state.isError = false;
@@ -35,7 +29,7 @@ export const issuesSlice = createSlice({
       state.isError = true;
       state.error = action.payload;
     },
-    LOAD_UPDATE_ISSUES_REDUCER: (state, action) => {
+    LOAD_UPDATE_ISSUES_REDUCER: state => {
       state.isLoading = true;
       state.isSuccess = false;
       state.isError = false;
