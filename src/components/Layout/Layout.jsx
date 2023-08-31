@@ -1,5 +1,5 @@
 import React from 'react';
-import { GlobalStyles } from './Reset';
+import { GlobalStyles } from '../../styles/GlobalStyles';
 
 function Layout({ children }) {
   return (
