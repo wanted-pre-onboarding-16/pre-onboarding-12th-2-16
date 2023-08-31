@@ -10,7 +10,7 @@ function Issue({ data, issueCount }) {
   const moveToAdvertosement = () => {
     window.location.href = 'https://www.wanted.co.kr/';
   };
-  // body
+
   return (
     <LiTag>
       {(issueCount + 1) % 5 === 0 && (

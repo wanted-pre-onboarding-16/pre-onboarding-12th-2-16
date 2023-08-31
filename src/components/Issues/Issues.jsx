@@ -16,14 +16,18 @@ function Issues() {
         nextIssuePage: selector.nextIssuePage,
       }),
     );
-  }, [dispatch]);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => {
       let currentHeight = window.scrollY + document.documentElement.clientHeight;
       let restScrollHeigth = document.documentElement.scrollHeight - 600;
 
-      if (currentHeight > restScrollHeigth && !selector.isLoading) {
+      if (
+        currentHeight > restScrollHeigth &&
+        !selector.isLoading &&
+        selector.lastIssueNumber < 100
+      ) {
         dispatch(
           callIssueReducer({
             lastIssueNumber: selector.lastIssueNumber,
