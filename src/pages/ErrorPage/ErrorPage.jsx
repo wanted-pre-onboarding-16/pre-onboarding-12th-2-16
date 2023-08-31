@@ -15,7 +15,7 @@ function ErrorPage({ message = 'Oops! Something went wrong.' }) {
           <h1>Oops!</h1>
           <h2>404 - The Page can't be fouund</h2>
         </ErrorTitle>
-        <ErrorMessage onclick={handleGoHome}>Go To Homepage</ErrorMessage>
+        <ErrorMessage onClick={handleGoHome}>Go To Homepage</ErrorMessage>
       </ErrorBox>
     </ErrorContainer>
   );
@@ -24,7 +24,10 @@ function ErrorPage({ message = 'Oops! Something went wrong.' }) {
 export default ErrorPage;
 
 const ErrorContainer = styled.div`
-  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 300px); // 높이를 화면의 높이로 설정하되, 위의 margin 100px을 제외
   margin-top: 100px;
 `;
 const ErrorBox = styled.div`
@@ -53,7 +56,7 @@ const ErrorBox = styled.div`
     font-weight: 400;
     text-transform: uppercase;
     color: #fff;
-    background: #211b19;
+    background: black;
     padding: 10px 10px;
     margin: auto;
     display: inline-block;
@@ -61,6 +64,7 @@ const ErrorBox = styled.div`
     bottom: 0px;
     left: 0;
     right: 0;
+    border-radius: 20px;
   }
 `;
 
@@ -80,10 +84,11 @@ const ErrorMessage = styled.button`
   text-transform: uppercase;
   padding: 13px 23px;
   background: #ff6300;
+  border-radius: 20px;
   font-size: 18px;
   -webkit-transition: 0.2s all;
   transition: 0.2s all;
-  :hover {
+  &:hover {
     color: #ff6300;
     background: #211b19;
   }
