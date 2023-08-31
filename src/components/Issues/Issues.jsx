@@ -1,22 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { callIssueReducer } from '../../slice/issuesSlice';
+import { LOAD_UPDATE_ISSUES_REDUCER } from '../../slice/issuesSlice';
 import Issue from '../Issue/Issue';
 import Spinner from '../Loading/Loading';
 
 function Issues() {
   const dispatch = useDispatch();
   const selector = useSelector(state => state.issue);
-
-  useEffect(() => {
-    dispatch(
-      callIssueReducer({
-        lastIssueNumber: selector.lastIssueNumber,
-        nextIssuePage: selector.nextIssuePage,
-      }),
-    );
-  }, []);
 
   useEffect(() => {
     const onScroll = () => {
@@ -29,18 +20,19 @@ function Issues() {
         selector.lastIssueNumber < 100
       ) {
         dispatch(
-          callIssueReducer({
+          LOAD_UPDATE_ISSUES_REDUCER({
             lastIssueNumber: selector.lastIssueNumber,
             nextIssuePage: selector.nextIssuePage,
           }),
         );
+        selector.isSuccess && sessionStorage.setItem('lastViewedCount', selector.lastIssueNumber);
       }
     };
 
     window.addEventListener('scroll', onScroll);
 
     return () => window.removeEventListener('scroll', onScroll);
-  }, [dispatch, selector.isLoading]);
+  }, [selector.isLoading]);
   return (
     <ul>
       {selector.error}
