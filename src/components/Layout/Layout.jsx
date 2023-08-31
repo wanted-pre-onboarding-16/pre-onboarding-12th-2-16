@@ -1,11 +1,13 @@
 import React from 'react';
+import { GlobalStyles } from '../../styles/GlobalStyles';
 
 function Layout({ children }) {
   return (
-    <div>
+    <>
+      <GlobalStyles />
       <h1>Facebook / React</h1>
       {children}
-    </div>
+    </>
   );
 }
 

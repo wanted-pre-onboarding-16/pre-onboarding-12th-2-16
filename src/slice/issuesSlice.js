@@ -1,5 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { closerGetIssue } from '../util/IssueUtil';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   issuesStore: [],
@@ -11,18 +10,6 @@ const initialState = {
   isError: false,
 };
 
-export const fetchByIssues = createAsyncThunk(
-  'issue/fetchByIssues',
-  async (pageInfo, { rejectWithValue }) => {
-    const result = await closerGetIssue(pageInfo).promise();
-
-    if (!result) {
-      return rejectWithValue('이슈가 없습니다!');
-    }
-    return result;
-  },
-);
-
 export const issuesSlice = createSlice({
   name: 'issue',
   initialState,
@@ -32,30 +19,50 @@ export const issuesSlice = createSlice({
       state.isSuccess = false;
       state.isError = false;
     },
-  },
 
-  extraReducers: builder => {
-    builder.addCase(fetchByIssues.pending, (state, action) => {
+    LOAD_ISSUES_REDUCER: (state, action) => {
       state.isLoading = true;
       state.isSuccess = false;
       state.isError = false;
-    });
-    builder.addCase(fetchByIssues.fulfilled, (state, action) => {
+    },
+    SUCCESS_ISSUES_REDUCER: (state, action) => {
       state.isLoading = false;
       state.isSuccess = true;
-      state.issuesStore = action.payload;
+      state.issuesStore = action.payload.value;
+    },
+    FAIL_ISSUES_REDUCER: (state, action) => {
+      state.isLoading = false;
+      state.isError = true;
+      state.error = action.payload;
+    },
+    LOAD_UPDATE_ISSUES_REDUCER: (state, action) => {
+      state.isLoading = true;
+      state.isSuccess = false;
+      state.isError = false;
+    },
+    SUCCESS_UPDATE_ISSUES_REDUCER: (state, action) => {
+      state.isLoading = false;
+      state.isSuccess = true;
+      state.issuesStore = action.payload.value;
       if (state.lastIssueNumber <= 100) {
         state.lastIssueNumber += 10;
       }
-    });
-    builder.addCase(fetchByIssues.rejected, (state, action) => {
-      state.error = action.payload;
+    },
+    FAIL_UPDATE_ISSUES_REDUCER: (state, action) => {
       state.isLoading = false;
       state.isError = true;
-    });
+      state.error = action.payload;
+    },
   },
 });
 
 export const fetchIssues = issuesSlice.extraReducers;
-export const { callIssueReducer, successIssueReducer } = issuesSlice.actions;
+export const {
+  LOAD_ISSUES_REDUCER,
+  SUCCESS_ISSUES_REDUCER,
+  FAIL_ISSUES_REDUCER,
+  LOAD_UPDATE_ISSUES_REDUCER,
+  SUCCESS_UPDATE_ISSUES_REDUCER,
+  FAIL_UPDATE_ISSUES_REDUCER,
+} = issuesSlice.actions;
 export default issuesSlice.reducer;
