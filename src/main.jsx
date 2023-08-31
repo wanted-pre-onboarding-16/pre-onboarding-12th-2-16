@@ -5,8 +5,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import Issues from './components/Issues/Issues.jsx';
 import './index.css';
-import Description from './pages/Description/Description.jsx';
+// import Description from './pages/Description/Description.jsx';
 import { store } from './store.js';
+import IssueDetail from './components/IssueDetail/IssueDetail.jsx';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/:id',
-        element: <Description />,
+        element: <IssueDetail />,
       },
     ],
   },
