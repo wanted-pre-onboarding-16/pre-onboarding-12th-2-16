@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 
-function ErrorPage({ message = 'Oops! Something went wrong.' }) {
+function ErrorPage() {
   const navigate = useNavigate();
 
   const handleGoHome = () => {
@@ -27,7 +27,7 @@ const ErrorContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc(100vh - 300px); // 높이를 화면의 높이로 설정하되, 위의 margin 100px을 제외
+  height: calc(100vh - 300px);
   margin-top: 100px;
 `;
 const ErrorBox = styled.div`

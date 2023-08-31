@@ -4,34 +4,55 @@ import { useParams } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import { IssueUI } from '../IssueUI/IssueUI';
+import Spinner from '../Loading/Loading';
 
 function IssueDetail() {
   const [markdownText, setMarkdownText] = useState('');
   const selector = useSelector(state => state.issue.issuesStore);
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const markdownData = selector[id]?.body || '';
-    setMarkdownText(markdownData);
+    if (selector[id]) {
+      const markdownData = selector[id]?.body || '';
+      setMarkdownText(markdownData);
+      setIsLoading(false);
+    }
   }, [id, selector]);
 
   return (
     <DescriptionContainer>
-      {selector[id] && (
-        <ProfileContainer>
-          <AvatarContainer>
-            <Avatar src={selector[id].user.avatar_url} alt="Author's Avatar" />
-            <AuthorName>{selector[id].user.login}</AuthorName>
-          </AvatarContainer>
-          <StyledIssue data={selector[id]} />
-        </ProfileContainer>
+      {isLoading ? (
+        <CenteredSpinner>
+          <Spinner />
+        </CenteredSpinner>
+      ) : (
+        <>
+          {selector[id] && (
+            <ProfileContainer>
+              <AvatarContainer>
+                <Avatar src={selector[id].user.avatar_url} alt="Author's Avatar" />
+                <AuthorName>{selector[id].user.login}</AuthorName>
+              </AvatarContainer>
+              <StyledIssue data={selector[id]} />
+            </ProfileContainer>
+          )}
+          <StyledReactMarkdown>{markdownText}</StyledReactMarkdown>
+        </>
       )}
-      <StyledReactMarkdown>{markdownText}</StyledReactMarkdown>
     </DescriptionContainer>
   );
 }
 
 export default IssueDetail;
+
+const CenteredSpinner = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  min-height: 200px;
+`;
 
 const DescriptionContainer = styled.div`
   padding: 20px;
@@ -107,8 +128,8 @@ const StyledIssue = styled(IssueUI)`
   padding: 10px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 250px; // Issue의 최대 폭 조절
-  margin-left: 20px; // 사용자 프로필과의 간격
+  max-width: 250px;
+  margin-left: 20px;
 
   & > div {
     font-size: 0.85em;
