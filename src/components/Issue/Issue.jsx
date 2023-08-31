@@ -8,7 +8,6 @@ function Issue({ data, issueCount }) {
     navigation(`${issueCount}`);
   };
   const moveToAdvertosement = e => {
-    e.stopPropagation();
     window.location.href = 'https://www.wanted.co.kr/';
   };
 
