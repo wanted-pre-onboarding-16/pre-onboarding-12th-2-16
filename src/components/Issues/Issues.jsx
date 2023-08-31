@@ -29,6 +29,8 @@ function Issues() {
     };
 
     window.addEventListener('scroll', onScroll);
+
+    return () => window.removeEventListener('scroll', onScroll);
   }, [isLoading]);
   return (
     <UlContainer>
