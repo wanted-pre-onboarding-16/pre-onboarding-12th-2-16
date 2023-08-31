@@ -22,7 +22,7 @@ export const GlobalStyles = createGlobalStyle`
     border: 0;
     vertical-align: baseline;
   }
-  
+  /* HTML5 display-role reset for older browsers */
   article, aside, details, figcaption, figure, 
   footer, header, hgroup, menu, nav, section {
     display: block;
