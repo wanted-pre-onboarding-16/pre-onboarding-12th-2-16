@@ -12,7 +12,7 @@ function Issue({ data, issueCount }) {
   };
 
   const DateFormatter = data.updated_at.match(/(\d{4})-(\d{2})-(\d{2})T/);
-  let DateFormatterArr = `${DateFormatter[1]}년 ${DateFormatter[2]}월 ${DateFormatter[3]}일`;
+  let DateFormatterString = `${DateFormatter[1]}년 ${DateFormatter[2]}월 ${DateFormatter[3]}일`;
   return (
     <LiTag>
       {(issueCount + 1) % 5 === 0 && (
@@ -31,7 +31,7 @@ function Issue({ data, issueCount }) {
           </LeftSideTitle>
           <LeftSideWriter>
             <LeftSideWriterSpan>작성자: {data.user.login}</LeftSideWriterSpan> 작성일:
-            {DateFormatterArr}
+            {DateFormatterString}
           </LeftSideWriter>
         </IssueLeftSide>
 

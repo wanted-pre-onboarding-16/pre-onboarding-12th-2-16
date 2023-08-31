@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { IssueUI } from '../IssueUI/IssueUI';
 import Spinner from '../Loading/Loading';
@@ -10,13 +10,16 @@ function IssueDetail() {
   const [markdownText, setMarkdownText] = useState('');
   const { issuesStore, isLoading } = useSelector(state => state.issue);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (issuesStore[id]) {
       const markdownData = issuesStore[id]?.body || '';
       setMarkdownText(markdownData);
+    } else if (!isLoading) {
+      navigate('/ErrorPage');
     }
-  }, [id, issuesStore]);
+  }, [id, issuesStore, isLoading, navigate]);
 
   return (
     <DescriptionContainer>
