@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
 import styled from 'styled-components';
 import { IssueUI } from '../IssueUI/IssueUI';
 import Spinner from '../Loading/Loading';
 
 function IssueDetail() {
   const [markdownText, setMarkdownText] = useState('');
-  const selector = useSelector(state => state.issue.issuesStore);
+  const { issuesStore, isLoading } = useSelector(state => state.issue);
   const { id } = useParams();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if (selector[id]) {
-      const markdownData = selector[id]?.body || '';
+    if (issuesStore[id]) {
+      const markdownData = issuesStore[id]?.body || '';
       setMarkdownText(markdownData);
-      setIsLoading(false);
     }
-  }, [id, selector]);
+  }, [id, issuesStore]);
 
   return (
     <DescriptionContainer>
@@ -28,13 +26,13 @@ function IssueDetail() {
         </CenteredSpinner>
       ) : (
         <>
-          {selector[id] && (
+          {issuesStore[id] && (
             <ProfileContainer>
               <AvatarContainer>
-                <Avatar src={selector[id].user.avatar_url} alt="Author's Avatar" />
-                <AuthorName>{selector[id].user.login}</AuthorName>
+                <Avatar src={issuesStore[id].user.avatar_url} alt="Author's Avatar" />
+                <AuthorName>{issuesStore[id].user.login}</AuthorName>
               </AvatarContainer>
-              <StyledIssue data={selector[id]} />
+              <StyledIssue data={issuesStore[id]} />
             </ProfileContainer>
           )}
           <StyledReactMarkdown>{markdownText}</StyledReactMarkdown>
