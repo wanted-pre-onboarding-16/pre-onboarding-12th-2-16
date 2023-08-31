@@ -128,8 +128,8 @@ const StyledIssue = styled(IssueUI)`
   padding: 10px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  max-width: 250px; // Issue의 최대 폭 조절
-  margin-left: 20px; // 사용자 프로필과의 간격
+  max-width: 250px;
+  margin-left: 20px;
 
   & > div {
     font-size: 0.85em;
