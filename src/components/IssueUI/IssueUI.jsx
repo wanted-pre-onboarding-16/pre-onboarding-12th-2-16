@@ -24,7 +24,7 @@ const IssueStyle = styled.li`
   font-size: 1rem;
   line-height: 1.5rem;
   color: black;
-  cursor: default; // 클릭할 수 없게 만들어줍니다.
+  cursor: default;
   p:first-child {
     color: purple;
     font-size: 1.5rem;

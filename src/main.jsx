@@ -8,6 +8,7 @@ import './index.css';
 // import Description from './pages/Description/Description.jsx';
 import { store } from './store.js';
 import IssueDetail from './components/IssueDetail/IssueDetail.jsx';
+import ErrorPage from './pages/ErrorPage/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         path: '/:id',
         element: <IssueDetail />,
+      },
+      {
+        path: '/ErrorPage',
+        element: <ErrorPage />,
       },
     ],
   },
