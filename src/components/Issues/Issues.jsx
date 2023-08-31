@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { styled } from 'styled-components';
 import { LOAD_UPDATE_ISSUES_REDUCER } from '../../slice/issuesSlice';
 import Issue from '../Issue/Issue';
 import Spinner from '../Loading/Loading';
@@ -34,14 +35,22 @@ function Issues() {
     return () => window.removeEventListener('scroll', onScroll);
   }, [selector.isLoading]);
   return (
-    <ul>
+    <UlContainer>
       {selector.error}
       {selector.issuesStore?.map((issues, idx) => {
         return <Issue key={issues.id} data={issues} issueCount={idx} />;
       })}
       {selector.isLoading && <Spinner />}
-    </ul>
+    </UlContainer>
   );
 }
 
 export default Issues;
+
+const UlContainer = styled.ul`
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+  font-family: 'Arial', sans-serif;
+  color: black;
+`;
