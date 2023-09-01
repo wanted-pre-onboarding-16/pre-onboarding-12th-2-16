@@ -8,9 +8,9 @@
 
 ## 팀원 구성 및 역할
 
-- 🙋🏻‍♀️ 김대윤 :  [🔗GitHub](https://github.com/apeachicetea)
-- 🙋🏼‍♂️ 유승국 :  [🔗GitHub](https://github.com/SeungGukYoo)
-- 🙋🏼‍♂️ 윤새한 :  [🔗GitHub](https://github.com/ovelute53)
+- 🙋🏻‍♀️ 김대윤 : 스크럼 마스터 및 팀장 [🔗GitHub](https://github.com/apeachicetea)
+- 🙋🏼‍♂️ 유승국 : 최종 코드 리뷰어 [🔗GitHub](https://github.com/SeungGukYoo)
+- 🙋🏼‍♂️ 윤새한 : Git 관리 및 성능최적화, 접근성 [🔗GitHub](https://github.com/ovelute53)
 
 ## 1. 프로젝트 목표
 
