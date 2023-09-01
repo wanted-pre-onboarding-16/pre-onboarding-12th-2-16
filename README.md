@@ -32,7 +32,13 @@
 ## 5. UI
 
 1. 전체 페이지
+
    <img width="500" alt="스크린샷 2023-09-01 오전 11 02 21" src="https://github.com/wanted-pre-onboarding-16/pre-onboarding-12th-2-16/assets/89075605/fe26c4be-afb4-4bf7-bc93-e55d6e047fe0">
 
 2. 상세 페이지
+
    <img width="500" alt="스크린샷 2023-09-01 오전 11 02 26" src="https://github.com/wanted-pre-onboarding-16/pre-onboarding-12th-2-16/assets/89075605/ed1351d0-a32d-42d1-9f4b-0d1e385b74cd">
+
+3. 에러 페이지
+
+   <img width="832" alt="스크린샷 2023-09-01 오후 2 45 25" src="https://github.com/wanted-pre-onboarding-16/pre-onboarding-12th-2-16/assets/119836116/402c5ea8-830d-4d1e-9a3f-d0097711ecd0">
