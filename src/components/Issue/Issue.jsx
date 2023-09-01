@@ -92,6 +92,6 @@ const IssueContainer = styled.div`
     background-color: rgba(0, 128, 255, 0.1);
     box-shadow:
       0 5px 15px rgba(0, 128, 255, 0.1),
-      0 -5px 15px rgba(0, 128, 255, 0.1); /* 위, 아래로 흐림 효과 */
+      0 -5px 15px rgba(0, 128, 255, 0.1);
   }
 `;
